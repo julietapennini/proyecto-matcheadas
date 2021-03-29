@@ -50,13 +50,12 @@ i {
 
 /*** GRID ***/
 
-.container-grid {
+.grid-container {
   width: 100%;
   border-radius: 10px;
   padding: 10px;
   box-sizing: border-box;
   border: 3px solid #fafafa;
-  background: rgb(0 0 0 / 73%);
 }
 
 #grid {
