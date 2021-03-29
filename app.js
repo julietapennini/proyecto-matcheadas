@@ -24,3 +24,78 @@ function createBoard() {
 }
 
 createBoard()
+
+//Drag the Candy
+/*
+
+El método forEach() ejecuta la función indicada una vez por cada elemento del array.
+
+.forEach sintaxis
+arr.forEach(function callback(currentValue, index, array) {
+    // tu iterador
+}[, thisArg]);
+
+Creamos 5 eventos y luego le damos las funciones necesarias
+
+*/
+
+let colorBeingDragged
+let colorBeingReplaced
+let squareIdBeingDragged
+let squareIdBeingReplaced
+
+squares.forEach(square => square.addEventListener('dragstart', dragStart))
+squares.forEach(square => square.addEventListener('dragend', dragEnd))
+squares.forEach(square => square.addEventListener('dragover', dragOver))
+squares.forEach(square => square.addEventListener('dragenter', dragEnter))
+squares.forEach(square => square.addEventListener('drageleave', dragLeave))
+squares.forEach(square => square.addEventListener('drop', dragDrop))
+
+function dragStart() {
+    colorBeingDragged = this.style.backgroundColor
+    squareIdBeingDragged = parseInt(this.id)
+    console.log(colorBeingDragged)
+    console.log(this.id, 'dragstart')
+}
+
+function dragOver(e) {
+    e.preventDefault()
+    console.log(this.id, 'dragover')
+}
+
+function dragEnter(e) {
+    e.preventDefault()
+    console.log(this.id, 'dragenter')
+}
+
+function dragLeave() {
+    console.log(this.id, 'dragleave')
+}
+
+function dragDrop() {
+    console.log(this.id, 'dragdrop')
+    colorBeingReplace = this.style.backgroundColor
+    squareIdBeingReplaced = parseInt(this.id)
+    this.style.backgroundColor = colorBeingDragged
+    squares [squareIdBeingDragged].style.backgroundColor = colorBeingReplaced
+}
+
+function dragEnd() {
+    console.log(this.id, 'dragend')
+    //what is a valid move? Only in x and y
+    let validMoves = [
+        squareIdBeingDragged -1, 
+        squareIdBeingDragged -width,
+        squareIdBeingDragged +1,
+        squareIdBeingDragged +width
+    ]
+
+    let validMove = validMoves.includes(squareIdBeingReplaced)
+
+    if (squareIdBeingReplaced && validMove) {
+        squareIdBeingReplaced = null
+    } else if (squareIdBeingReplaced && !validMove){
+        squares[colorBeingReplaced].style.backgroundColor = colorBeingReplaced
+        squares[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
+    } else square[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
+}

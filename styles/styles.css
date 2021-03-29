@@ -44,23 +44,23 @@ i {
 /******************************* MAIN Container **************************************/
 
 .container {
-  max-width: 560px;
-  width: 560px;
+  max-width: 500px;
+  width: 500px;
 }
 
 /*** GRID ***/
 
 .grid {
-  width: 560px;
-  height: 560px;
+  width: 100%px;
+  height: 500px;
   display: flex;
   flex-wrap: wrap;
 }
 
 /* grid square */
 .grid div{
-  width: 70px;
-  height: 70px;
+  width: 62.5px;
+  height: 62.5px;
 }
 
 /*** CONTROL ***/
