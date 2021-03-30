@@ -1,4 +1,6 @@
+// Config
 const grid = document.querySelector('.grid')
+const scoreDisplay = document.getElementById ('score')
 const width = 8
 const squares = []
 let score = 0
@@ -11,6 +13,8 @@ const candyColors = [
     'green',
     'blue'
 ]
+
+// Game
 
 // Create Board
 function createBoard() {
@@ -137,6 +141,7 @@ function checkRowForFour(){
 
         if (rowOfFour.every(index => squares[index].style.backgroundColor === decidedColor && !isBlank)) {
             score += 4
+            scoreDisplay.innerHTML = score
             rowOfFour.forEach(index => {
                 squares[index].style.backgroundColor = ''
             })
@@ -155,6 +160,7 @@ function checkColumnForFour(){
 
         if (columnOfFour.every(index => squares[index].style.backgroundColor === decidedColor && !isBlank)) {
             score += 4
+            scoreDisplay.innerHTML = score
             columnOfFour.forEach(index => {
                 squares[index].style.backgroundColor = ''
             })
@@ -176,6 +182,7 @@ function checkRowForThree(){
 
         if (rowOfThree.every(index => squares[index].style.backgroundColor === decidedColor && !isBlank)) {
             score += 3
+            scoreDisplay.innerHTML = score
             rowOfThree.forEach(index => {
                 squares[index].style.backgroundColor = ''
             })
@@ -194,6 +201,7 @@ function checkColumnForThree(){
 
         if (columnOfThree.every(index => squares[index].style.backgroundColor === decidedColor && !isBlank)) {
             score += 3
+            scoreDisplay.innerHTML = score
             columnOfThree.forEach(index => {
                 squares[index].style.backgroundColor = ''
             })
