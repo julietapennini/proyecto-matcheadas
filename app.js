@@ -97,9 +97,22 @@ function dragEnd() {
     if (squareIdBeingReplaced && validMove) {
         squareIdBeingReplaced = null
     } else if (squareIdBeingReplaced && !validMove){
-        squares[colorBeingReplaced].style.backgroundColor = colorBeingReplaced
+        squares[squareIdBeingReplaced].style.backgroundColor = colorBeingReplaced
         squares[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
     } else square[squareIdBeingDragged].style.backgroundColor = colorBeingDragged
+}
+
+
+
+//drop candies once some have been cleared
+function moveDown(){
+    for (i = 0; i < 55; i++){
+        if (squares[i + width].style.backgroundColor === ''){
+            squares[i + width].style.backgroundColor = squares[i].style.backgroundColor
+            squares[i].style.backgroundColor = ''
+
+        }
+    }
 }
 
 
@@ -125,9 +138,8 @@ function checkRowForFour(){
 
 checkRowForFour()
 
-//check for column of four
 function checkColumnForFour(){
-    for (i = 0; i < 47; i++){
+    for (i = 0; i < 46; i++){
         let columnOfFour = [i, i+width, i+width*2, i+width*3]
         let decidedColor = squares[i].style.backgroundColor
         const isBlank = squares[i].style.backgroundColor === ''
@@ -140,6 +152,7 @@ function checkColumnForFour(){
         }
     }
 }
+
 checkColumnForFour()
 
 //check for row of three
@@ -182,6 +195,7 @@ function checkColumnForThree(){
 checkColumnForThree()
 
 window.setInterval(function(){
+    moveDown()
     checkRowForFour()
     checkColumnForFour()
     checkRowForThree()
