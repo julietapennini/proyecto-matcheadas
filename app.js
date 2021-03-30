@@ -1,9 +1,11 @@
 // Config
 const grid = document.querySelector('.grid')
 const scoreDisplay = document.getElementById ('score')
+const comboDisplay = document.getElementById ('combo')
 const width = 8
 const squares = []
 let score = 0
+let combo = 0
 
 const candyColors = [
     'red',
@@ -14,7 +16,6 @@ const candyColors = [
     'blue'
 ]
 
-// Game
 
 // Create Board
 function createBoard() {
@@ -140,8 +141,10 @@ function checkRowForFour(){
         if (notValid.includes(i)) continue
 
         if (rowOfFour.every(index => squares[index].style.backgroundColor === decidedColor && !isBlank)) {
-            score += 4
+            score += 3
             scoreDisplay.innerHTML = score
+            combo ++
+            comboDisplay.innerHTML = combo
             rowOfFour.forEach(index => {
                 squares[index].style.backgroundColor = ''
             })
@@ -159,8 +162,10 @@ function checkColumnForFour(){
         const isBlank = squares[i].style.backgroundColor === ''
 
         if (columnOfFour.every(index => squares[index].style.backgroundColor === decidedColor && !isBlank)) {
-            score += 4
+            score += 3
             scoreDisplay.innerHTML = score
+            combo ++
+            comboDisplay.innerHTML = combo
             columnOfFour.forEach(index => {
                 squares[index].style.backgroundColor = ''
             })
@@ -183,6 +188,8 @@ function checkRowForThree(){
         if (rowOfThree.every(index => squares[index].style.backgroundColor === decidedColor && !isBlank)) {
             score += 3
             scoreDisplay.innerHTML = score
+            combo ++
+            comboDisplay.innerHTML = combo
             rowOfThree.forEach(index => {
                 squares[index].style.backgroundColor = ''
             })
@@ -202,6 +209,8 @@ function checkColumnForThree(){
         if (columnOfThree.every(index => squares[index].style.backgroundColor === decidedColor && !isBlank)) {
             score += 3
             scoreDisplay.innerHTML = score
+            combo ++
+            comboDisplay.innerHTML = combo
             columnOfThree.forEach(index => {
                 squares[index].style.backgroundColor = ''
             })
@@ -218,3 +227,4 @@ window.setInterval(function(){
     checkRowForThree()
     checkColumnForThree()
 }, 100)
+
