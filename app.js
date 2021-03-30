@@ -71,12 +71,13 @@ function dragEnter(e) {
 }
 
 function dragLeave() {
-    console.log(this.id, 'dragleave')
+    console.log(this.id, 'drageleave')
+    this.style.backgroundColor = ''
 }
 
 function dragDrop() {
     console.log(this.id, 'dragdrop')
-    colorBeingReplace = this.style.backgroundColor
+    colorBeingReplaced = this.style.backgroundColor
     squareIdBeingReplaced = parseInt(this.id)
     this.style.backgroundColor = colorBeingDragged
     squares [squareIdBeingDragged].style.backgroundColor = colorBeingReplaced
@@ -107,14 +108,14 @@ function dragEnd() {
 //drop candies once some have been cleared
 function moveDown(){
     //if there are matches, clear
-    for (i = 0; i < 55; i++){
-        if (squares[i + width].style.backgroundColor === ''){
+    for (i = 0; i < 55; i ++){
+        if (squares[i + width].style.backgroundColor === '') {
             squares[i + width].style.backgroundColor = squares[i].style.backgroundColor
             squares[i].style.backgroundColor = ''
-    //an fill it with random color
+    //and fill it with random color
             const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
             const isFirstRow = firstRow.includes(i)
-            if (isFirstRow && squares[i].style.backgroundColor === '') {
+            if (isFirstRow && (squares[i].style.backgroundColor === '')) {
                 let randomColor = Math.floor(Math.random() * candyColors.length)
                 squares[i].style.backgroundColor = candyColors[randomColor]
             }
@@ -145,8 +146,9 @@ function checkRowForFour(){
 
 checkRowForFour()
 
+//check for column of four
 function checkColumnForFour(){
-    for (i = 0; i < 46; i++){
+    for (i = 0; i < 39; i++){
         let columnOfFour = [i, i+width, i+width*2, i+width*3]
         let decidedColor = squares[i].style.backgroundColor
         const isBlank = squares[i].style.backgroundColor === ''
