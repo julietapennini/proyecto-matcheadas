@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <!---Fonts--->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Shrikhand&display=swap" rel="stylesheet">
+
+    <!---Icons--->
+    <script src="https://kit.fontawesome.com/e724a02081.js" crossorigin="anonymous"></script>
+
+    <!---Links CSS--->
+    <link rel="stylesheet" href="./styles/styles.css">
+
+    <title>MatcheADAs</title>
+</head>
+<body>
+
+    <!---------------------------------------########## MAIN Container ##########-------------------------------->
+    <div class="container">
+        <h1 class="title">MatcheADAs</h1>
+    
+        <div class="control">
+            <div class="score-container">
+                <p>Combo x 
+                    <span id="combo"></span>
+                </p>
+                <p>Score:
+                    <span id="score" class="score"></span>
+                </p>
+            </div>
+            <div class="restart">
+                <button id="info-button" aria-label="Instructions">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button id="undo-button" aria-label="Undo">
+                    <i class="fas fa-undo-alt"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="grid"> </div>
+
+        <div class="time-container">
+            <i class="fas fa-clock"></i>
+            <p class="time-left">0:00</p>
+        </div>
+    </div>
+
+    <!---------------------------------------########## OVERLAY Container ##########-------------------------------->
+    <div class="overlay">
+        <!---------Hidden modal 1: Welcome------------>
+        <div class="modal hidden" id="welcome-modal" role="dialog" aria-modal="true">
+            <h2 class="modal-title">Welcome!</h2>
+            <div class="modal-content">
+                <p class="modal-text">
+                En MatcheADAs tu objetivo es juntar tres o más ítems del mismo tipo,
+                ya sea en fila o columna. Para eso, selecciona un ítem y a
+                continuación un ítem adyacente para intercambiarlos de lugar.
+                </p>
+                <p class="modal-text">
+                Si se forma un grupo, esos ítems se eliminarán y ganarás puntos.
+                ¡Sigue armando grupos de 3 o más antes de que se acabe el tiempo!
+                </p>
+                <strong class="modal-text">Controls</strong>
+                <p>Click izquierdo: selección</p>
+                <p>Enter o Espacio: selección</p>
+                <p>Flechas o WASD: movimiento e intercambio</p>
+            </div>
+            <div class="modal-buttons">
+                <button class="button " id="start-button">Start</button>
+            </div>
+        </div>
+
+        <!---------Hidden modal 2: Restart------------>
+        <div class="modal hidden" id="restart-modal" role="dialog" aria-modal="true">
+            <h2 class="modal-title">Restart?</h2>
+            <div class="modal-content">
+                <p class="modal-text">Perderás todo tu puntaje acumulado!</p>
+            </div>
+            <div class="modal-buttons">
+                <button class="button" id="cancel-button">Cancel</button>
+                <button class="button" id="new-game-button">New game</button>
+            </div>
+        </div>
+
+        <!---------Hidden modal 3: Game Over------------>
+        <div class="modal hidden" id="game-over-modal" role="dialog" aria-modal="true">
+            <h2 class="modal-title">Game Over</h2>
+            <div class="modal-content">
+                <p class="modal-text">Final score
+                    <span id="final-score">0</span>
+                </p>
+            </div>
+            <div class="modal-buttons">
+                <button class="button" id="new-game-button">New game</button>
+                <button class="button" id="restart-button">Restart</button>
+            </div>
+        </div>
+
+        <!---------Hidden modal 4: New Game------------>
+        <div class="modal hidden" id="new-game-modal" role="dialog" aria-modal="true">
+            <h2 class="modal-title">New Game</h2>
+            <div class="modal-content">
+                <p class="modal-text">Seleccioná una dificultad</p>
+            </div>
+            <div class="modal-buttons">
+                <button class="button" id="easy-button">Easy</button>
+                <button class="button" id="medium-button">Medium</button>
+                <button class="button" id="hard-button">Hard</button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js" charset="utf-8"></script>
+</body>
+</html>
