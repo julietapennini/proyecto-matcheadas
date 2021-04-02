@@ -61,27 +61,21 @@ squares.forEach(square => square.addEventListener('drop', dragDrop))
 function dragStart() {
     colorBeingDragged = this.style.backgroundColor
     squareIdBeingDragged = parseInt(this.id)
-    console.log(colorBeingDragged)
-    console.log(this.id, 'dragstart')
 }
 
 function dragOver(e) {
     e.preventDefault()
-    console.log(this.id, 'dragover')
 }
 
 function dragEnter(e) {
     e.preventDefault()
-    console.log(this.id, 'dragenter')
 }
 
 function dragLeave() {
-    console.log(this.id, 'drageleave')
     this.style.backgroundColor = ''
 }
 
 function dragDrop() {
-    console.log(this.id, 'dragdrop')
     colorBeingReplaced = this.style.backgroundColor
     squareIdBeingReplaced = parseInt(this.id)
     this.style.backgroundColor = colorBeingDragged
@@ -111,23 +105,35 @@ function dragEnd() {
 
 
 //drop candies once some have been cleared
+
 function moveDown(){
-    //if there are matches, clear
     for (i = 0; i < 55; i ++){
-        if (squares[i + width].style.backgroundColor === '') {
-            squares[i + width].style.backgroundColor = squares[i].style.backgroundColor
-            squares[i].style.backgroundColor = ''
-    //and fill it with random color
-            const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
-            const isFirstRow = firstRow.includes(i)
-            if (isFirstRow && (squares[i].style.backgroundColor === '')) {
-                let randomColor = Math.floor(Math.random() * candyColors.length)
-                squares[i].style.backgroundColor = candyColors[randomColor]
+        const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
+        const isFirstRow = firstRow.includes(i)
+        if (isFirstRow && (squares[i].style.backgroundColor === '')) {
+            let randomColor = Math.floor(Math.random() * candyColors.length)
+            squares[i].style.backgroundColor = candyColors[randomColor]
+            if (squares[i + width].style.backgroundColor === '') {
+                squares[i + width].style.backgroundColor = squares[i].style.backgroundColor
+                squares[i].style.backgroundColor = ''
             }
         }
     }
 }
 
+function moveDownSecond(){
+    for (i = 0; i < 55; i ++){
+        let randomColor = Math.floor(Math.random() * candyColors.length)
+
+        if (squares[i + width].style.backgroundColor === '') {
+            squares[i + width].style.backgroundColor = squares[i].style.backgroundColor
+            squares[i].style.backgroundColor = ''
+            if (squares[i].style.backgroundColor === '') {
+                squares[i].style.backgroundColor = candyColors[randomColor]
+            }
+        }
+    }
+}
 
 //Checking for matches
 //check for row of four
@@ -222,6 +228,7 @@ checkColumnForThree()
 
 window.setInterval(function(){
     moveDown()
+    moveDownSecond()
     checkRowForFour()
     checkColumnForFour()
     checkRowForThree()
